@@ -1,18 +1,12 @@
-import {
-  time,
-  loadFixture,
-} from "@nomicfoundation/hardhat-toolbox/network-helpers";
-import { anyValue } from "@nomicfoundation/hardhat-chai-matchers/withArgs";
 import { expect } from "chai";
 import { ethers } from "hardhat";
+import { MyToken } from "../typechain-types";
 
 describe("MyToken", function () {
-  let MyToken;
-  let myToken;
+  let myToken: MyToken;
 
   beforeEach(async function () {
     const Token = await ethers.getContractFactory("MyToken");
-    const [owner, recipient] = await ethers.getSigners();
 
     const token = await Token.deploy(
       "My Token",

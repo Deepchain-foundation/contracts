@@ -1,13 +1,14 @@
 import { assert, expect } from "chai";
 import { ethers } from "hardhat";
+import { MyToken, MyTokenBatchTransfer } from "../typechain-types";
+import { Signer } from "ethers";
 
 describe("MyTokenBatchTransfer 合约", function () {
-  let MyTokenBatchTransfer;
-  let myTokenBatchTransfer;
-  let myToken;
-  let owner;
-  let recipient1;
-  let recipient2;
+  let myTokenBatchTransfer: MyTokenBatchTransfer;
+  let myToken: MyToken;
+  let owner: Signer;
+  let recipient1: Signer;
+  let recipient2: Signer;
 
   // 在每个测试用例运行之前，部署合约和获取账户
   beforeEach(async function () {
