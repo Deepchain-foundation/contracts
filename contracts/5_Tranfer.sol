@@ -20,6 +20,13 @@ contract MyTokenBatchTransfer {
     function batchTransfer(address[] calldata recipients, uint256[] calldata amounts) external {
         require(recipients.length == amounts.length, "Invalid input length");
 
+        uint256 totalAmount = 0;
+        for (uint256 i = 0; i < recipients.length; i++) {
+            totalAmount += amounts[i];
+        }
+        require(myToken.balanceOf(msg.sender) >= totalAmount, "Transfer amount exceeds balance");
+
+        // 继续进行转账操作
         for (uint256 i = 0; i < recipients.length; i++) {
             myToken.transferFrom(msg.sender, recipients[i], amounts[i]);
 
